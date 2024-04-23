@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel = CoinsViewModel()
+    @StateObject var viewModel = CharactersViewModel()
     
     var body: some View {
         List {
-            ForEach(viewModel.coins) { coin in
-                Text(coin.name)
+            ForEach(viewModel.characters) { character in
+                Text(character.name)
+            }
+        }
+        .overlay {
+            if let error = viewModel.errorMessage {
+                Text(error)
             }
         }
         .padding()
